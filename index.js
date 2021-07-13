@@ -1,4 +1,17 @@
-//Node File System
+//we can make the code non-blocking by refactoring it to a callback.
+//with readFile, we pass the same first 2 arguments and add a callback function as the 3rd.
+//inside the function, we can access an error object if the operation fails. 
+//when successful, we can access the actual text from the file.
+//The Awesome Thing Here Is: even through the text file comes first in the script, its not what is executed first. NODE registers the callback, executes the rest of the script, then finally runs the callback when the file has been read.
+const {readFile, readFileSync } = require('fs');
+
+const txt = readFile('./hello.txt', 'utf8', (err, txt) => {
+    console.log(txt);
+});
+console.log('This is the second line'); 
+//script outputs: This is the second line (\n)We are testing the built-in node file system module. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+/* //Node File System
 
 const {readFile, readFileSync } = require('fs');
 
@@ -7,7 +20,10 @@ const {readFile, readFileSync } = require('fs');
 
 const txt = readFileSync('./hello.txt', 'utf8');
 console.log(txt);
-console.log('This is the second line'); //outputs: We are testing the built-in node file system module. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. (\n)This is the second line
+console.log('This is the second line'); 
+//script outputs: We are testing the built-in node file system module. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. (\n)This is the second line
+
+//we can make the code non-blocking by refactoring it to a callback */
 
 /* //create own event by importing an event emmittter from the events module built into node
 const { EventEmitter } = require('events');
