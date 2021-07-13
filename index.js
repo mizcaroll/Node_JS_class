@@ -1,4 +1,21 @@
-//we can make the code non-blocking by refactoring it to a callback.
+//Promise-based solution to reading a file. Tends to produce cleaner code compared to callbacks.
+//in this example we're importing readFile from the promises namespace. This gives us a function that returns a promise when called.
+ const { readFile } = require('fs').promises;
+
+//you can use following function with top-level await from version 14(which we have)
+//otherwise, you can wrap the code within an async function as shown. this async-await syntax will make your code a lot easier to read esp when you have multiple async calls in the same function.
+
+async function hello() {
+    const file = await readFile('./hello.txt', 'utf8');
+}
+
+//const file = await readFile('./hello.txt', 'utf8');
+//console.log(hello());
+
+//Yall. this promise code did not run successfully. did not output file contents on the console. Anyhu nimewachia hapo. Might be useful
+
+
+/* //we can make the code non-blocking by refactoring it to a callback.
 //with readFile, we pass the same first 2 arguments and add a callback function as the 3rd.
 //inside the function, we can access an error object if the operation fails. 
 //when successful, we can access the actual text from the file.
@@ -10,7 +27,7 @@ const txt = readFile('./hello.txt', 'utf8', (err, txt) => {
 });
 console.log('This is the second line'); 
 //script outputs: This is the second line (\n)We are testing the built-in node file system module. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+ */
 /* //Node File System
 
 const {readFile, readFileSync } = require('fs');
