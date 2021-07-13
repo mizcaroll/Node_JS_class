@@ -1,4 +1,8 @@
-//Promise-based solution to reading a file. Tends to produce cleaner code compared to callbacks.
+const myModule = require('./my-module');
+
+console.log(myModule);
+
+/* //Promise-based solution to reading a file. Tends to produce cleaner code compared to callbacks.
 //in this example we're importing readFile from the promises namespace. This gives us a function that returns a promise when called.
  const { readFile } = require('fs').promises;
 
@@ -12,7 +16,7 @@ async function hello() {
 //const file = await readFile('./hello.txt', 'utf8');
 //console.log(hello());
 
-//Yall. this promise code did not run successfully. did not output file contents on the console. Anyhu nimewachia hapo. Might be useful
+//Yall. this promise code did not run successfully. did not output file contents on the console. Anyhu nimewachia hapo. Might be useful */
 
 
 /* //we can make the code non-blocking by refactoring it to a callback.
